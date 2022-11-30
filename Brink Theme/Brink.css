@@ -112,7 +112,7 @@
 	 */
 	
 	--toggleStats: hidden;
-	--toggleStreaming: visible;
+	--toggleStreaming: hidden;
 	--toggleTopRatingGold: visible;
 	--toggleTopRatingSilver: visible;
 	--toggleTopRatingBronze: hidden;
@@ -140,22 +140,22 @@
 	--btn: 240, 3%, 16%;
 	--btnAlt: 240, 3.5%, 21%;
 	--btnLight: 240, 100%, 94%, 4%;
-	--btnAccent: 240, 17%, 34%;
-	--accent: 240, 75%, 77%;
+	--btnAccent: 33, 100%, 35%;
+	--accent: 33, 100%, 50%;
 	
 	--text: 0, 0%, 100%;
-	--textProminent: 27, 87%, 67%;
-	--textLinkHov: 240, 50%, 80%;
+	--textProminent: 51, 100%, 50%;
+	--textLinkHov: var(--accent);
 	
-	--current: 35, 49%, 46%;
-	--completed: 324, 49%, 46%;
-	--paused: 80, 91%, 23%;
-	--dropped: 6, 44%, 46%;
-	--planned: 56, 18%, 56%;
+	--current: 125, 59%, 43%;
+	--completed: 223, 58%, 35%;
+	--paused: 46, 86%, 59%;
+	--dropped: 359, 55%, 41%;
+	--planned: 0, 0%, 76%;
 	
-	--goldRating: 32.5, 100%, 71%;
-	--silverRating: 0, 0%, 80%;
-	--bronzeRating: 25, 55%, 59%;
+	--goldRating: 51, 100%, 50%;
+	--silverRating: 0, 0%, 75%;
+	--bronzeRating: 43, 89%, 38%;
 }
 
 
@@ -2885,3 +2885,119 @@ div[style="padding-top: 8px"] {
   !MODS
 \*------------------------------*/
 
+/* Hide Tags Edit Button */
+.list-table .list-table-data .tags .edit {
+	display: none;
+}
+
+/* Hide Unknown Genres/Demographics */
+.data:is(.genre, .demographic):empty {
+	display: none;
+}
+
+/* Grayscale Dropped */
+.status.dropped ~ .data.image {
+	filter: grayscale(1);
+}
+
+/* Reset More Info Section */
+.add-edit-more .more a::before {
+	content: "MORE";
+}
+.td1::first-line {
+	font-size: inherit;
+	line-height: inherit;
+}
+.more-info br {
+	display: initial;
+}
+.more-info div:first-of-type {
+	display: block;
+}
+
+/*------------------------------*\
+|*  Use Both Chapter & Volume   *|
+\* - - - - - - - - - - - - - - -*/
+
+.data.chapter + .data.volume {
+	display: table-cell !important;
+	bottom: 27px;
+	opacity: 0;
+	pointer-events: none;
+}
+.data.chapter:hover + .data.volume,
+.data.chapter + .data.volume:hover {
+	opacity: 1;
+	pointer-events: initial;
+}
+
+/*------------------------------*\
+|*    Colored Status Buttons    *|
+\* - - - - - - - - - - - - - - -*/
+
+#status-menu .status-button:nth-of-type(1):is(:hover, :focus, .on)::before {
+	color: hsl(var(--accent));
+}
+#status-menu .status-button:nth-of-type(2):is(:hover, :focus, .on)::before {
+	color: hsl(var(--current));
+}
+#status-menu .status-button:nth-of-type(3):is(:hover, :focus, .on)::before {
+	color: hsl(var(--completed));
+}
+#status-menu .status-button:nth-of-type(4):is(:hover, :focus, .on)::before {
+	color: hsl(var(--paused));
+}
+#status-menu .status-button:nth-of-type(5):is(:hover, :focus, .on)::before {
+	color: hsl(var(--dropped));
+}
+#status-menu .status-button:nth-of-type(6):is(:hover, :focus, .on)::before {
+	color: hsl(var(--planned));
+}
+
+/*------------------------------*\
+|*         Status Icon          *|
+\* - - - - - - - - - - - - - - -*/
+
+.status.watching ~ .data.score::before,
+.status.reading ~ .data.score::before {
+	content: "\f06e  ";
+}
+.status.completed ~ .data.score::before {
+	content: "\f00c  ";
+}
+.status.onhold ~ .data.score::before {
+	content: "\f252  ";
+}
+.status.dropped ~ .data.score::before {
+	content: "\f00d  ";
+	color: hsl(var(--dropped));
+}
+[class*="planto"] ~ .data.score::before {
+	content: "\f141" !important;
+}
+
+/*------------------------------*\
+|*       Scrollbar Color        *|
+\* - - - - - - - - - - - - - - -*/
+
+:root {
+	--scrollbar: 0, 0%, 45%;
+}
+
+/* Firefox */
+* {
+	scrollbar-color: hsl(var(--scrollbar)) hsl(var(--bgAlt));
+}
+.list-item * {
+	scrollbar-color: hsl(var(--scrollbar)) hsl(var(--bg));
+	scrollbar-width: thin;
+}
+
+/* Chrome */
+*::-webkit-scrollbar-thumb {
+	background: hsl(var(--scrollbar)) content-box;
+	border: 0 solid transparent;
+}
+*::-webkit-scrollbar-thumb:hover {
+	background-color: hsla(var(--scrollbar), 70%);
+}
