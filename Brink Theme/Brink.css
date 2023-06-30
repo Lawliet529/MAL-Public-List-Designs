@@ -2900,21 +2900,6 @@ div[style="padding-top: 8px"] {
 	filter: grayscale(1);
 }
 
-/* Reset More Info Section */
-.add-edit-more .more a::before {
-	content: "MORE";
-}
-.td1::first-line {
-	font-size: inherit;
-	line-height: inherit;
-}
-.more-info br {
-	display: initial;
-}
-.more-info div:first-of-type {
-	display: block;
-}
-
 /*------------------------------*\
 |*  Use Both Chapter & Volume   *|
 \* - - - - - - - - - - - - - - -*/
